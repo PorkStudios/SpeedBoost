@@ -100,7 +100,8 @@ jar {
                 "TweakOrder": 0,
                 'FMLCorePluginContainsFMLMod': 'false',
                 'FMLCorePlugin': 'net.daporkchop.speedboost.MixinLoader',
-                'ForceLoadAsMod': 'false'
+                'ForceLoadAsMod': 'false',
+                'FMLAT': 'vanillaboost_at.cfg'
         )
     }
 }

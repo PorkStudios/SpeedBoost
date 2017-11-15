@@ -3,6 +3,23 @@
   "compatibilityLevel": "JAVA_8",
   "package": "net.daporkchop.speedboost.mixin",
   "refmap": "mixins.vanillaboost.refmap.json",
+  "plugin": "net.daporkchop.speedboost.config.Config",
   "mixins": [
+    "bungee.packet.MixinC00Handshake",
+    "bungee.MixinHandshakeListener",
+    "bungee.MixinNetHandlerLoginServer",
+    "bungee.MixinNetworkManager",
+    "entityactivation.heirachy.MixinEntity",
+    "entityactivation.heirachy.MixinEntityCreature",
+    "entityactivation.heirachy.MixinEntityLiving",
+    "entityactivation.heirachy.MixinEntityLivingBase",
+    "entityactivation.patches.MixinEntityAgeable",
+    "entityactivation.patches.MixinEntityArrow",
+    "entityactivation.patches.MixinEntityFireworkRocket",
+    "entityactivation.patches.MixinEntityItem",
+    "entityactivation.MixinWorld",
+    "general.MixinMinecraftServer",
+    "itemdespawn.MixinEntityItem",
+    "nulltile.MixinWorld"
   ]
 }
