@@ -18,6 +18,7 @@
     "entityactivationrange.patches.MixinEntityFireworkRocket",
     "entityactivationrange.patches.MixinEntityItem",
     "entityactivationrange.MixinWorld",
+    "entitytrackingrange.MixinEntityTracker",
     "general.MixinMinecraftServer",
     "itemdespawn.MixinEntityItem",
     "antinulltiles.MixinWorld"

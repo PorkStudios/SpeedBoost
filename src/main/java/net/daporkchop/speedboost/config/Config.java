@@ -20,10 +20,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import net.daporkchop.speedboost.config.impl.BungeeTranslator;
-import net.daporkchop.speedboost.config.impl.EntityActivationTranslator;
-import net.daporkchop.speedboost.config.impl.ItemDespawn;
-import net.daporkchop.speedboost.config.impl.NulltileTranslator;
+import net.daporkchop.speedboost.config.impl.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,6 +48,7 @@ public class Config implements IMixinConfigPlugin {
     static {
         registerConfigTranslator(BungeeTranslator.INSTANCE);
         registerConfigTranslator(EntityActivationTranslator.INSTANCE);
+        registerConfigTranslator(EntityTrackingTranslator.INSTANCE);
         registerConfigTranslator(ItemDespawn.INSTANCE);
         registerConfigTranslator(NulltileTranslator.INSTANCE);
     }
