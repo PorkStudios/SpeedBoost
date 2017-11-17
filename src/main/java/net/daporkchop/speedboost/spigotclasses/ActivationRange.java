@@ -14,7 +14,7 @@
  *
  */
 
-package org.spigotmc;
+package net.daporkchop.speedboost.spigotclasses;
 
 import net.daporkchop.speedboost.add.entityactivation.IActivationEntity;
 import net.minecraft.entity.Entity;

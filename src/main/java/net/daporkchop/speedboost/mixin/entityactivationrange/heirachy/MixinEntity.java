@@ -17,6 +17,7 @@
 package net.daporkchop.speedboost.mixin.entityactivationrange.heirachy;
 
 import net.daporkchop.speedboost.add.entityactivation.IActivationEntity;
+import net.daporkchop.speedboost.spigotclasses.ActivationRange;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Entity.class)
 public abstract class MixinEntity implements IActivationEntity {
-    public final byte activationType = org.spigotmc.ActivationRange.initializeEntityActivationType(Entity.class.cast(this));
+    public final byte activationType = ActivationRange.initializeEntityActivationType(Entity.class.cast(this));
     @Shadow
     public World world;
     public boolean defaultActivationState;
@@ -47,7 +48,7 @@ public abstract class MixinEntity implements IActivationEntity {
         if (worldIn == null) {
             defaultActivationState = false;
         } else {
-            defaultActivationState = org.spigotmc.ActivationRange.initializeEntityActivationState(Entity.class.cast(this));
+            defaultActivationState = ActivationRange.initializeEntityActivationState(Entity.class.cast(this));
         }
     }
 
