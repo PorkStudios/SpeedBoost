@@ -29,6 +29,6 @@ public class BungeeTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "bungee";
+        return "bungeecord";
     }
 }

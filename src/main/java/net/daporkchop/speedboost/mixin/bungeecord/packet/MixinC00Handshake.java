@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.bungee.packet;
+package net.daporkchop.speedboost.mixin.bungeecord.packet;
 
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.PacketBuffer;

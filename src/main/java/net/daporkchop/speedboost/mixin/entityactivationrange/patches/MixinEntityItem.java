@@ -1,6 +1,6 @@
-package net.daporkchop.speedboost.mixin.entityactivation.patches;
+package net.daporkchop.speedboost.mixin.entityactivationrange.patches;
 
-import net.daporkchop.speedboost.mixin.entityactivation.heirachy.MixinEntity;
+import net.daporkchop.speedboost.mixin.entityactivationrange.heirachy.MixinEntity;
 import net.minecraft.entity.item.EntityItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

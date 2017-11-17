@@ -16,7 +16,7 @@ public class EntityActivationTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "entityactivation";
+        return "entityactivationrange";
     }
 
     public void encode(JsonObject json) {

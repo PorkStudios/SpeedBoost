@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.bungee;
+package net.daporkchop.speedboost.mixin.bungeecord;
 
 import com.google.common.base.Charsets;
 import com.mojang.authlib.GameProfile;

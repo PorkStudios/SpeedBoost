@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.entityactivation;
+package net.daporkchop.speedboost.mixin.entityactivationrange;
 
 import net.daporkchop.speedboost.add.entityactivation.IActivationEntity;
 import net.minecraft.entity.Entity;

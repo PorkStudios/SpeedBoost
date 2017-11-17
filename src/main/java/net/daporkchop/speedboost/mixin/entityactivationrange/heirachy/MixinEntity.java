@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.entityactivation.heirachy;
+package net.daporkchop.speedboost.mixin.entityactivationrange.heirachy;
 
 import net.daporkchop.speedboost.add.entityactivation.IActivationEntity;
 import net.minecraft.entity.Entity;

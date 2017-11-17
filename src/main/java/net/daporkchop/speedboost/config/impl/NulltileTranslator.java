@@ -21,7 +21,7 @@ public class NulltileTranslator implements IConfigTranslator {
     }
 
     public String name() {
-        return "nulltile";
+        return "antinulltiles";
     }
 
     public boolean getState()   {
@@ -29,6 +29,6 @@ public class NulltileTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "nulltile";
+        return "antinulltiles";
     }
 }

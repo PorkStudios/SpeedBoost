@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.nulltile;
+package net.daporkchop.speedboost.mixin.antinulltiles;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;

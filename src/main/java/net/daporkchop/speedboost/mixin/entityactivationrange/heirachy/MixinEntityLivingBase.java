@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.entityactivation.heirachy;
+package net.daporkchop.speedboost.mixin.entityactivationrange.heirachy;
 
 import net.minecraft.entity.EntityLivingBase;
 import org.spongepowered.asm.mixin.Mixin;

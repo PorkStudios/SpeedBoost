@@ -1,4 +1,4 @@
-package net.daporkchop.speedboost.mixin.bungee;
+package net.daporkchop.speedboost.mixin.bungeecord;
 
 import com.mojang.authlib.properties.Property;
 import io.netty.channel.Channel;
