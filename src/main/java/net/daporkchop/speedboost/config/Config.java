@@ -52,6 +52,7 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(HopperCustomizationsTranslator.INSTANCE);
         registerConfigTranslator(ItemDespawn.INSTANCE);
         registerConfigTranslator(NulltileTranslator.INSTANCE);
+        registerConfigTranslator(TabCompletionTranslator.INSTANCE);
     }
 
     public static void registerConfigTranslator(IConfigTranslator element) {
@@ -113,18 +114,20 @@ public class Config implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        LOGGER.info("Checking config option for " + mixinClassName);
         for (IConfigTranslator translator : translators.values())   {
             switch (translator.shouldLoad(mixinClassName)) {
                 case LOAD:
+                    LOGGER.info("Loading     " + mixinClassName);
                     return true;
                 case NO_LOAD:
+                    LOGGER.info("Not loading " + mixinClassName);
                     return false;
                 case UNKNOWN:
                     break;
             }
         }
 
+        LOGGER.info("DefaultLoad " + mixinClassName);
         return true;
     }
 

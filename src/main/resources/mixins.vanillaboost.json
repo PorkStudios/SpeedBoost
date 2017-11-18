@@ -5,6 +5,7 @@
   "refmap": "mixins.vanillaboost.refmap.json",
   "plugin": "net.daporkchop.speedboost.config.Config",
   "mixins": [
+    "antinulltiles.MixinWorld",
     "bungeecord.packet.MixinC00Handshake",
     "bungeecord.MixinHandshakeListener",
     "bungeecord.MixinNetHandlerLoginServer",
@@ -22,6 +23,6 @@
     "general.MixinMinecraftServer",
     "hoppercustomizations.MixinTileEntityHopper",
     "itemdespawn.MixinEntityItem",
-    "antinulltiles.MixinWorld"
+    "tabcompletion.MixinNetHandlerPlayServer"
   ]
 }
