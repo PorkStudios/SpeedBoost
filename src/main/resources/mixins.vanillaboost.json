@@ -20,6 +20,7 @@
     "entityactivationrange.MixinWorld",
     "entitytrackingrange.MixinEntityTracker",
     "general.MixinMinecraftServer",
+    "hoppercustomizations.MixinTileEntityHopper",
     "itemdespawn.MixinEntityItem",
     "antinulltiles.MixinWorld"
   ]
