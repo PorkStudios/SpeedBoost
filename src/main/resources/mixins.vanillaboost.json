@@ -25,6 +25,7 @@
     "entityactivationrange.MixinWorld",
     "entitytrackingrange.MixinEntityTracker",
     "general.MixinCPacketChatMessage",
+    "general.MixinEntity",
     "general.MixinMinecraftServer",
     "general.MixinNetHandlerPlayServer",
     "hoppercustomizations.MixinTileEntityHopper",
