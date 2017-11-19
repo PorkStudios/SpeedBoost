@@ -6,6 +6,7 @@
   "plugin": "net.daporkchop.speedboost.config.Config",
   "mixins": [
     "antinulltiles.MixinWorld",
+    "arrowdespawn.MixinEntityArrow",
     "bungeecord.packet.MixinC00Handshake",
     "bungeecord.MixinHandshakeListener",
     "bungeecord.MixinNetHandlerLoginServer",

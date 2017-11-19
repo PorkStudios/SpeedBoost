@@ -46,6 +46,7 @@ public class Config implements IMixinConfigPlugin {
     private static Hashtable<String, IConfigTranslator> translators = new Hashtable<>();
 
     static {
+        registerConfigTranslator(ArrowDespawnRateTranslator.INSTANCE);
         registerConfigTranslator(BungeeTranslator.INSTANCE);
         registerConfigTranslator(DisableLightingUpdatesTranslator.INSTANCE);
         registerConfigTranslator(EntityActivationTranslator.INSTANCE);
