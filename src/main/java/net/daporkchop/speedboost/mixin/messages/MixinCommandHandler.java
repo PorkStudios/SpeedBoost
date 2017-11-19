@@ -14,36 +14,24 @@
  *
  */
 
-package net.daporkchop.speedboost.config.impl;
+package net.daporkchop.speedboost.mixin.messages;
 
-import com.google.gson.JsonObject;
-import net.daporkchop.speedboost.config.IConfigTranslator;
+import net.daporkchop.speedboost.config.impl.MessagesTranslator;
+import net.minecraft.command.CommandHandler;
+import net.minecraft.command.ICommandSender;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
-public class TabCompletionTranslator implements IConfigTranslator {
-    public static final TabCompletionTranslator INSTANCE = new TabCompletionTranslator();
-    public boolean enable = true;
-
-    private TabCompletionTranslator() {
-
-    }
-
-    public void encode(JsonObject json) {
-        json.addProperty("enable", enable);
-    }
-
-    public void decode(String fieldName, JsonObject json) {
-        enable = getBoolean(json, "enable", enable);
-    }
-
-    public String name() {
-        return "enableTabCompletion";
-    }
-
-    public boolean getState() {
-        return enable;
-    }
-
-    public String getPackageName() {
-        return "tabcompletion";
+@Mixin(CommandHandler.class)
+public abstract class MixinCommandHandler {
+    @Redirect(method = "Lnet/minecraft/command/CommandHandler;executeCommand(Lnet/minecraft/command/ICommandSender;Ljava/lang/String;)I",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/command/ICommandSender;sendMessage(Lnet/minecraft/util/text/ITextComponent;)V",
+                    ordinal = 0))
+    public void changeUnknownCommandMessage(ICommandSender sender, ITextComponent component) {
+        sender.sendMessage(new TextComponentString("\u00A7c" + MessagesTranslator.INSTANCE.unknownCommandMessage));
     }
 }

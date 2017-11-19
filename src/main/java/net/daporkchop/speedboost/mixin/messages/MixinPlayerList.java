@@ -14,36 +14,27 @@
  *
  */
 
-package net.daporkchop.speedboost.config.impl;
+package net.daporkchop.speedboost.mixin.messages;
 
-import com.google.gson.JsonObject;
-import net.daporkchop.speedboost.config.IConfigTranslator;
+import net.daporkchop.speedboost.config.impl.MessagesTranslator;
+import net.minecraft.server.management.PlayerList;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
-public class TabCompletionTranslator implements IConfigTranslator {
-    public static final TabCompletionTranslator INSTANCE = new TabCompletionTranslator();
-    public boolean enable = true;
-
-    private TabCompletionTranslator() {
-
+@Mixin(PlayerList.class)
+public abstract class MixinPlayerList {
+    @ModifyConstant(method = "Lnet/minecraft/server/management/PlayerList;allowUserToConnect(Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;",
+            constant = @Constant(classValue = String.class,
+                    stringValue = "You are not white-listed on this server!"))
+    public String changeWhitelistMessage() {
+        return MessagesTranslator.INSTANCE.whitelistMessage;
     }
 
-    public void encode(JsonObject json) {
-        json.addProperty("enable", enable);
-    }
-
-    public void decode(String fieldName, JsonObject json) {
-        enable = getBoolean(json, "enable", enable);
-    }
-
-    public String name() {
-        return "enableTabCompletion";
-    }
-
-    public boolean getState() {
-        return enable;
-    }
-
-    public String getPackageName() {
-        return "tabcompletion";
+    @ModifyConstant(method = "Lnet/minecraft/server/management/PlayerList;allowUserToConnect(Ljava/net/SocketAddress;Lcom/mojang/authlib/GameProfile;)Ljava/lang/String;",
+            constant = @Constant(classValue = String.class,
+                    stringValue = "The server is full!"))
+    public String changeFullMessage() {
+        return MessagesTranslator.INSTANCE.serverFullMessage;
     }
 }

@@ -23,6 +23,10 @@
     "general.MixinMinecraftServer",
     "hoppercustomizations.MixinTileEntityHopper",
     "itemdespawn.MixinEntityItem",
+    "messages.MixinCommandHandler",
+    "messages.MixinNetHandlerHandshakeTCP",
+    "messages.MixinNetHandlerPlayServer",
+    "messages.MixinPlayerList",
     "tabcompletion.MixinNetHandlerPlayServer"
   ]
 }

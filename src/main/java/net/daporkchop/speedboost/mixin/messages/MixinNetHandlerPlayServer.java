@@ -14,36 +14,33 @@
  *
  */
 
-package net.daporkchop.speedboost.config.impl;
+package net.daporkchop.speedboost.mixin.messages;
 
-import com.google.gson.JsonObject;
-import net.daporkchop.speedboost.config.IConfigTranslator;
+import net.daporkchop.speedboost.config.impl.MessagesTranslator;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.NetHandlerPlayServer;
+import org.apache.logging.log4j.Logger;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-public class TabCompletionTranslator implements IConfigTranslator {
-    public static final TabCompletionTranslator INSTANCE = new TabCompletionTranslator();
-    public boolean enable = true;
+@Mixin(NetHandlerPlayServer.class)
+public abstract class MixinNetHandlerPlayServer {
+    @Shadow
+    @Final
+    private static Logger LOGGER;
 
-    private TabCompletionTranslator() {
+    @Shadow
+    public EntityPlayerMP player;
 
-    }
-
-    public void encode(JsonObject json) {
-        json.addProperty("enable", enable);
-    }
-
-    public void decode(String fieldName, JsonObject json) {
-        enable = getBoolean(json, "enable", enable);
-    }
-
-    public String name() {
-        return "enableTabCompletion";
-    }
-
-    public boolean getState() {
-        return enable;
-    }
-
-    public String getPackageName() {
-        return "tabcompletion";
+    @Inject(method = "Lnet/minecraft/network/NetHandlerPlayServer;handleSlashCommand(Ljava/lang/String;)V",
+            at = @At("HEAD"))
+    public void logCommands(String command, CallbackInfo callbackInfo) {
+        if (MessagesTranslator.INSTANCE.logCommands) {
+            LOGGER.info(player.getName() + " issued server command: " + command);
+        }
     }
 }
