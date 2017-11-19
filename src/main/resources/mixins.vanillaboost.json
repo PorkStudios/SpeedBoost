@@ -13,6 +13,7 @@
     "bungeecord.MixinNetworkManager",
     "disablelightupdates.MixinChunk",
     "disablelightupdates.MixinWorldServer",
+    "disablezombievillageragression.MixinEntityZombie",
     "entityactivationrange.heirachy.MixinEntity",
     "entityactivationrange.heirachy.MixinEntityCreature",
     "entityactivationrange.heirachy.MixinEntityLiving",
