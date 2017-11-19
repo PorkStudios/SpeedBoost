@@ -10,6 +10,8 @@
     "bungeecord.MixinHandshakeListener",
     "bungeecord.MixinNetHandlerLoginServer",
     "bungeecord.MixinNetworkManager",
+    "disablelightupdates.MixinChunk",
+    "disablelightupdates.MixinWorldServer",
     "entityactivationrange.heirachy.MixinEntity",
     "entityactivationrange.heirachy.MixinEntityCreature",
     "entityactivationrange.heirachy.MixinEntityLiving",

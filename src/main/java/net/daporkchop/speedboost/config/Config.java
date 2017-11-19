@@ -47,6 +47,7 @@ public class Config implements IMixinConfigPlugin {
 
     static {
         registerConfigTranslator(BungeeTranslator.INSTANCE);
+        registerConfigTranslator(DisableLightingUpdatesTranslator.INSTANCE);
         registerConfigTranslator(EntityActivationTranslator.INSTANCE);
         registerConfigTranslator(EntityTrackingTranslator.INSTANCE);
         registerConfigTranslator(HopperCustomizationsTranslator.INSTANCE);
