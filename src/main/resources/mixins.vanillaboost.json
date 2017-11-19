@@ -34,6 +34,10 @@
     "messages.MixinNetHandlerHandshakeTCP",
     "messages.MixinNetHandlerPlayServer",
     "messages.MixinPlayerList",
+    "spawnermobnerfing.MixinEntity",
+    "spawnermobnerfing.MixinEntityLiving",
+    "spawnermobnerfing.MixinEntityLivingBase",
+    "spawnermobnerfing.MixinMobSpawnerBaseLogic",
     "tabcompletion.MixinNetHandlerPlayServer"
   ]
 }
