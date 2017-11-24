@@ -14,7 +14,7 @@
  *
  */
 
-package net.daporkchop.speedboost.mixin.general;
+package net.daporkchop.speedboost.mixin.fixasyncchat;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import net.minecraft.network.play.INetHandlerPlayServer;

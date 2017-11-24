@@ -45,7 +45,7 @@ public class HopperCustomizationsTranslator implements IConfigTranslator {
     }
 
     public String name() {
-        return "delet_this";
+        return "hopperCustomizations";
     }
 
     public boolean getState() {
@@ -53,6 +53,6 @@ public class HopperCustomizationsTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "delet_this";
+        return "hoppercustomizations";
     }
 }

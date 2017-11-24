@@ -26,9 +26,10 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 @Mixin(EntityTracker.class)
 public abstract class MixinEntityTracker {
     @ModifyArg(method = "Lnet/minecraft/entity/EntityTracker;track(Lnet/minecraft/entity/Entity;IIZ)V",
-            at = @At("HEAD"),
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/entity/EntityTrackerEntry;<init>(Lnet/minecraft/entity/Entity;IIIZ)V"),
             index = 1)
-    public int changeTrackingRange(Entity entity, int trackingRange) {
+    public int changeTrackingRange(Entity entity, int trackingRange, int a, int b, boolean c) {
         return TrackingRange.getEntityTrackingRange(entity, trackingRange);
     }
 }

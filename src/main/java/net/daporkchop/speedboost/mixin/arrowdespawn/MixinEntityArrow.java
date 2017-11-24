@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public abstract class MixinEntityArrow {
     @ModifyConstant(method = "Lnet/minecraft/entity/projectile/EntityArrow;onUpdate()V",
             constant = @Constant(intValue = 1200))
-    public int changeDespawnRate() {
+    public int changeDespawnRate(int valueIn) {
         return ArrowDespawnRateTranslator.INSTANCE.despawnRate;
     }
 }
