@@ -44,6 +44,7 @@
     "spawnermobnerfing.MixinEntityLiving",
     "spawnermobnerfing.MixinEntityLivingBase",
     "spawnermobnerfing.MixinMobSpawnerBaseLogic",
+    "squidspawnranges.MixinEntitySquid",
     "tabcompletion.MixinNetHandlerPlayServer",
     "tntlimit.MixinEntityTNTPrimed",
     "tntlimit.MixinWorldServer"
