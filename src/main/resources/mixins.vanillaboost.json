@@ -43,6 +43,8 @@
     "spawnermobnerfing.MixinEntityLiving",
     "spawnermobnerfing.MixinEntityLivingBase",
     "spawnermobnerfing.MixinMobSpawnerBaseLogic",
-    "tabcompletion.MixinNetHandlerPlayServer"
+    "tabcompletion.MixinNetHandlerPlayServer",
+    "tntlimit.MixinEntityTNTPrimed",
+    "tntlimit.MixinWorldServer"
   ]
 }

@@ -55,10 +55,12 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(HopperCustomizationsTranslator.INSTANCE);
         registerConfigTranslator(ItemDespawn.INSTANCE);
         registerConfigTranslator(MessagesTranslator.INSTANCE);
+        registerConfigTranslator(MovementThresholdTranslator.INSTANCE);
         registerConfigTranslator(NulltileTranslator.INSTANCE);
         registerConfigTranslator(PortalZombiePigmenSpawningTranslator.INSTANCE);
         registerConfigTranslator(SpawnerMobNerfingTranslator.INSTANCE);
         registerConfigTranslator(TabCompletionTranslator.INSTANCE);
+        registerConfigTranslator(TNTLimitTranslator.INSTANCE);
     }
 
     public static void registerConfigTranslator(IConfigTranslator element) {
