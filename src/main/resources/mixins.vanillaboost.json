@@ -37,6 +37,7 @@
     "messages.MixinNetHandlerHandshakeTCP",
     "messages.MixinNetHandlerPlayServer",
     "messages.MixinPlayerList",
+    "movementthresholds.MixinNetHandlerPlayServer",
     "pigmenportalspawning.MixinBlockPortal",
     "spawnermobnerfing.MixinEntity",
     "spawnermobnerfing.MixinEntityLiving",
