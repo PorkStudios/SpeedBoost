@@ -30,6 +30,7 @@
     "fastitemmatches.MixinContainer",
     "fixasyncchat.MixinCPacketChatMessage",
     "general.MixinEntity",
+    "general.MixinExplosion",
     "general.MixinMinecraftServer",
     "general.MixinNetHandlerPlayServer",
     "general.MixinTileEntityHopper",
