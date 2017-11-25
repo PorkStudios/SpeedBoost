@@ -13,6 +13,7 @@
     "bungeecord.MixinNetHandlerLoginServer",
     "bungeecord.MixinNetworkManager",
     "bungeecord.MixinPreYggdrasilConverter",
+    "customdespawndistance.MixinEntityLiving",
     "disablelightupdates.MixinChunk",
     "disablelightupdates.MixinWorldServer",
     "disablezombievillageragression.MixinEntityZombie",

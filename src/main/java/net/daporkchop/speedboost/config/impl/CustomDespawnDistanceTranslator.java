@@ -17,36 +17,36 @@
 package net.daporkchop.speedboost.config.impl;
 
 import com.google.gson.JsonObject;
-import net.daporkchop.speedboost.config.Config;
 import net.daporkchop.speedboost.config.IConfigTranslator;
 
-public class SquidSpawnRangesTranslator implements IConfigTranslator {
-    public static final SquidSpawnRangesTranslator INSTANCE = new SquidSpawnRangesTranslator();
+public class CustomDespawnDistanceTranslator implements IConfigTranslator {
+    public static final CustomDespawnDistanceTranslator INSTANCE = new CustomDespawnDistanceTranslator();
     public boolean state = false;
-    public double squidMinSpawnHeight = 49.0d;
-    public double squidMaxSpawnHeight = 64.0d;
+    public int softDespawnDistance = 32;
+    public int hardDespawnDistance = 128;
+    public int softDespawnDistanceSq;
+    public int hardDespawnDistanceSq;
 
-    private SquidSpawnRangesTranslator() {
+    private CustomDespawnDistanceTranslator() {
 
     }
 
     public void encode(JsonObject json) {
         json.addProperty("state", state);
-        json.addProperty("squidMinSpawnHeight", squidMinSpawnHeight);
-        json.addProperty("squidMaxSpawnHeight", squidMaxSpawnHeight);
+        json.addProperty("softDespawnDistance", softDespawnDistance);
+        json.addProperty("hardDespawnDistance", hardDespawnDistance);
     }
 
     public void decode(String fieldName, JsonObject json) {
         state = getBoolean(json, "state", state);
-        squidMinSpawnHeight = getDouble(json, "squidMinSpawnHeight", squidMinSpawnHeight);
-        squidMaxSpawnHeight = getDouble(json, "squidMaxSpawnHeight", squidMaxSpawnHeight);
-        if (state) {
-            Config.LOGGER.info("Squids will spawn between Y: " + squidMinSpawnHeight + " and Y: " + squidMaxSpawnHeight);
-        }
+        softDespawnDistance = getInt(json, "softDespawnDistance", softDespawnDistance);
+        hardDespawnDistance = getInt(json, "hardDespawnDistance", hardDespawnDistance);
+        softDespawnDistanceSq = softDespawnDistance ^ 2;
+        hardDespawnDistanceSq = hardDespawnDistance ^ 2;
     }
 
     public String name() {
-        return "squidSpawnRanges";
+        return "customDespawnDistance";
     }
 
     public boolean getState() {
@@ -54,6 +54,6 @@ public class SquidSpawnRangesTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "squidspawnranges";
+        return "customdespawndistance";
     }
 }
