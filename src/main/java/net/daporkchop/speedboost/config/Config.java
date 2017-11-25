@@ -56,6 +56,7 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(ItemDespawn.INSTANCE);
         registerConfigTranslator(MessagesTranslator.INSTANCE);
         registerConfigTranslator(NulltileTranslator.INSTANCE);
+        registerConfigTranslator(PortalZombiePigmenSpawningTranslator.INSTANCE);
         registerConfigTranslator(SpawnerMobNerfingTranslator.INSTANCE);
         registerConfigTranslator(TabCompletionTranslator.INSTANCE);
     }
