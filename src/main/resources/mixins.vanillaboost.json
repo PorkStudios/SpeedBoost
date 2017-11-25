@@ -26,6 +26,7 @@
     "entityactivationrange.patches.MixinEntityItem",
     "entityactivationrange.MixinWorld",
     "entitytrackingrange.MixinEntityTracker",
+    "fastitemmatches.MixinContainer",
     "fixasyncchat.MixinCPacketChatMessage",
     "general.MixinEntity",
     "general.MixinMinecraftServer",

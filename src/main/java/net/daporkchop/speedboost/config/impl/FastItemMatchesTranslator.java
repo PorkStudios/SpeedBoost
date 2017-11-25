@@ -14,23 +14,39 @@
  *
  */
 
-package net.daporkchop.speedboost;
+package net.daporkchop.speedboost.config.impl;
 
-import com.google.gson.Gson;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
+import com.google.gson.JsonObject;
+import net.daporkchop.speedboost.config.IConfigTranslator;
 
-public class PorkInject {
-    public static final Gson gson = new Gson();
-    public static MinecraftServer server;
+public class FastItemMatchesTranslator implements IConfigTranslator {
+    public static final FastItemMatchesTranslator INSTANCE = new FastItemMatchesTranslator();
+    public boolean state = false;
+    public int itemDirtyTicks = 20;
 
-    public static boolean fastMatches(ItemStack itemstack, ItemStack itemstack1) {
-        if (itemstack.isEmpty() && itemstack1.isEmpty()) {
-            return true;
-        }
-        if (!itemstack.isEmpty() && !itemstack1.isEmpty()) {
-            return itemstack.getCount() == itemstack1.getCount() && itemstack.getItem() == itemstack1.getItem() && itemstack.getItemDamage() == itemstack1.getItemDamage();
-        }
-        return false;
+    private FastItemMatchesTranslator() {
+
+    }
+
+    public void encode(JsonObject json) {
+        json.addProperty("state", state);
+        json.addProperty("itemDirtyTicks", itemDirtyTicks);
+    }
+
+    public void decode(String fieldName, JsonObject json) {
+        state = getBoolean(json, "state", state);
+        itemDirtyTicks = getInt(json, "itemDirtyTicks", itemDirtyTicks);
+    }
+
+    public String name() {
+        return "fastItemStackMatches";
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public String getPackageName() {
+        return "fastitemmatches";
     }
 }
