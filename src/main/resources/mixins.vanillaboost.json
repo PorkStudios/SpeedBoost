@@ -16,6 +16,7 @@
     "customdespawndistance.MixinEntityLiving",
     "disablelightupdates.MixinChunk",
     "disablelightupdates.MixinWorldServer",
+    "disablethunder.MixinWorldServer",
     "disablezombievillageragression.MixinEntityZombie",
     "entityactivationrange.heirachy.MixinEntity",
     "entityactivationrange.heirachy.MixinEntityCreature",
