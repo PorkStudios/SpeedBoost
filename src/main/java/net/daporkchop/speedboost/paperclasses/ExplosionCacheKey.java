@@ -28,15 +28,15 @@ public class ExplosionCacheKey {
 
     public ExplosionCacheKey(Explosion explosion, AxisAlignedBB aabb) {
         this.world = explosion.world;
-        this.posX = explosion.posX;
-        this.posY = explosion.posY;
-        this.posZ = explosion.posZ;
-        this.minX = aabb.a;
-        this.minY = aabb.b;
-        this.minZ = aabb.c;
-        this.maxX = aabb.d;
-        this.maxY = aabb.e;
-        this.maxZ = aabb.f;
+        this.posX = explosion.x;
+        this.posY = explosion.y;
+        this.posZ = explosion.z;
+        this.minX = aabb.minX;
+        this.minY = aabb.minY;
+        this.minZ = aabb.minZ;
+        this.maxX = aabb.maxX;
+        this.maxY = aabb.maxY;
+        this.maxZ = aabb.maxZ;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ExplosionCacheKey {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CacheKey cacheKey = (CacheKey) o;
+        ExplosionCacheKey cacheKey = (ExplosionCacheKey) o;
 
         if (Double.compare(cacheKey.posX, posX) != 0) return false;
         if (Double.compare(cacheKey.posY, posY) != 0) return false;
