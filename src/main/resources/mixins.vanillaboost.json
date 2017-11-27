@@ -28,6 +28,7 @@
     "entityactivationrange.MixinWorld",
     "entitytrackingrange.MixinEntityTracker",
     "fastitemmatches.MixinContainer",
+    "fluidspeed.MixinBlockLiquid",
     "fixasyncchat.MixinCPacketChatMessage",
     "general.MixinEntity",
     "general.MixinExplosion",
