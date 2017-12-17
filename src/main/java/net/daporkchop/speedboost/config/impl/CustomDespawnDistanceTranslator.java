@@ -22,10 +22,8 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 public class CustomDespawnDistanceTranslator implements IConfigTranslator {
     public static final CustomDespawnDistanceTranslator INSTANCE = new CustomDespawnDistanceTranslator();
     public boolean state = false;
-    public int softDespawnDistance = 32;
-    public int hardDespawnDistance = 128;
-    public int softDespawnDistanceSq;
-    public int hardDespawnDistanceSq;
+    public int softDespawnDistance = 32 * 32;
+    public int hardDespawnDistance = 128 * 128;
 
     private CustomDespawnDistanceTranslator() {
 
@@ -33,16 +31,14 @@ public class CustomDespawnDistanceTranslator implements IConfigTranslator {
 
     public void encode(JsonObject json) {
         json.addProperty("state", state);
-        json.addProperty("softDespawnDistance", softDespawnDistance);
-        json.addProperty("hardDespawnDistance", hardDespawnDistance);
+        json.addProperty("softDespawnDistanceSq", softDespawnDistance);
+        json.addProperty("hardDespawnDistanceSq", hardDespawnDistance);
     }
 
     public void decode(String fieldName, JsonObject json) {
         state = getBoolean(json, "state", state);
-        softDespawnDistance = getInt(json, "softDespawnDistance", softDespawnDistance);
-        hardDespawnDistance = getInt(json, "hardDespawnDistance", hardDespawnDistance);
-        softDespawnDistanceSq = softDespawnDistance ^ 2;
-        hardDespawnDistanceSq = hardDespawnDistance ^ 2;
+        softDespawnDistance = getInt(json, "softDespawnDistanceSq", softDespawnDistance);
+        hardDespawnDistance = getInt(json, "hardDespawnDistanceSq", hardDespawnDistance);
     }
 
     public String name() {

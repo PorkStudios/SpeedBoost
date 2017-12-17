@@ -27,7 +27,7 @@ public abstract class MixinPreYggdrasilConverter {
     @Redirect(method = "Lnet/minecraft/server/management/PreYggdrasilConverter;lookupNames(Lnet/minecraft/server/MinecraftServer;Ljava/util/Collection;Lcom/mojang/authlib/ProfileLookupCallback;)V",
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/server/MinecraftServer;isServerInOnlineMode()Z"))
-    protected static boolean fixBungeeCheck(MinecraftServer server) {
+    private static boolean fixBungeeCheck(MinecraftServer server) {
         return true;
     }
 }

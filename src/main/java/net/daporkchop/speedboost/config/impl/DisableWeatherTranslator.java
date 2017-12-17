@@ -19,24 +19,30 @@ package net.daporkchop.speedboost.config.impl;
 import com.google.gson.JsonObject;
 import net.daporkchop.speedboost.config.IConfigTranslator;
 
-public class DisableThunderTranslator implements IConfigTranslator {
-    public static final DisableThunderTranslator INSTANCE = new DisableThunderTranslator();
+public class DisableWeatherTranslator implements IConfigTranslator {
+    public static final DisableWeatherTranslator INSTANCE = new DisableWeatherTranslator();
     public boolean state = false;
+    public boolean disableThunder = false;
+    public boolean disableIceSnow = false;
 
-    private DisableThunderTranslator() {
+    private DisableWeatherTranslator() {
 
     }
 
     public void encode(JsonObject json) {
         json.addProperty("state", state);
+        json.addProperty("disableThunder", disableThunder);
+        json.addProperty("disableIceSnow", disableIceSnow);
     }
 
     public void decode(String fieldName, JsonObject json) {
         state = getBoolean(json, "state", state);
+        disableThunder = getBoolean(json, "disableThunder", disableThunder);
+        disableIceSnow = getBoolean(json, "disableIceSnow", disableIceSnow);
     }
 
     public String name() {
-        return "disableThunder";
+        return "disableWeather";
     }
 
     public boolean getState() {
@@ -44,6 +50,6 @@ public class DisableThunderTranslator implements IConfigTranslator {
     }
 
     public String getPackageName() {
-        return "disablethunder";
+        return "disableweather";
     }
 }

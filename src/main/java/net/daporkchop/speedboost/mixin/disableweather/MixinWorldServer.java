@@ -14,8 +14,9 @@
  *
  */
 
-package net.daporkchop.speedboost.mixin.disablethunder;
+package net.daporkchop.speedboost.mixin.disableweather;
 
+import net.daporkchop.speedboost.config.impl.DisableWeatherTranslator;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.Chunk;
@@ -29,6 +30,6 @@ public abstract class MixinWorldServer {
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/world/WorldProvider;canDoLightning(Lnet/minecraft/world/chunk/Chunk;)Z"))
     public boolean preventLightning(WorldProvider provider, Chunk chunk) {
-        return false;
+        return DisableWeatherTranslator.INSTANCE.disableThunder && provider.canDoLightning(chunk);
     }
 }

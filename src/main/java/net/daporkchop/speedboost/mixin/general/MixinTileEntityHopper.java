@@ -26,15 +26,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
+import static net.minecraft.util.math.MathHelper.floor;
+
 @Mixin(TileEntityHopper.class)
 public abstract class MixinTileEntityHopper {
     @Inject(method = "Lnet/minecraft/tileentity/TileEntityHopper;getInventoryAtPosition(Lnet/minecraft/world/World;DDD)Lnet/minecraft/inventory/IInventory;",
-            at = @At(value = "INVOKE_ASSIGN",
-                    ordinal = 4),
+            at = @At("HEAD"),
             cancellable = true,
             locals = LocalCapture.CAPTURE_FAILHARD)
-    protected static void preventChunkLoading(World world, double x, double y, double z, CallbackInfoReturnable<IInventory> callbackInfo, BlockPos blockPos) {
-        if (!world.isBlockLoaded(blockPos)) {
+    private static void preventChunkLoading(World world, double x, double y, double z, CallbackInfoReturnable<IInventory> callbackInfo) {
+        if (!world.isBlockLoaded(new BlockPos(floor(x), floor(y), floor(z)))) {
             callbackInfo.setReturnValue(null);
         }
     }

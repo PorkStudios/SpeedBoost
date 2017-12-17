@@ -27,12 +27,12 @@ public abstract class MixinEntityLiving {
     @ModifyConstant(method = "Lnet/minecraft/entity/EntityLiving;despawnEntity()V",
             constant = @Constant(doubleValue = 1024.0d))
     public double fixSoftDespawnRadius(double in) {
-        return CustomDespawnDistanceTranslator.INSTANCE.softDespawnDistanceSq;
+        return CustomDespawnDistanceTranslator.INSTANCE.softDespawnDistance;
     }
 
     @ModifyConstant(method = "Lnet/minecraft/entity/EntityLiving;despawnEntity()V",
             constant = @Constant(doubleValue = 16384.0d))
     public double fixHardDespawnRadius(double in) {
-        return CustomDespawnDistanceTranslator.INSTANCE.hardDespawnDistanceSq;
+        return CustomDespawnDistanceTranslator.INSTANCE.hardDespawnDistance;
     }
 }
