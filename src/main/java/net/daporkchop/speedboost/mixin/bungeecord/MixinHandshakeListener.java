@@ -1,7 +1,7 @@
 /*
  * Adapted from the Wizardry License
  *
- * Copyright (c) 2017 DaPorkchop_ and contributors
+ * Copyright (c) 2018 DaPorkchop_ and contributors
  *
  * Permission is hereby granted to any persons and/or organizations using this software to copy, modify, merge, publish, and distribute it.
  * Said persons and/or organizations are not allowed to use the software or any derivatives of the work for commercial use or any other means to generate income, nor are they allowed to claim this software as their own.
@@ -23,9 +23,7 @@ import net.daporkchop.speedboost.add.bungee.IBungeeNetworkManager;
 import net.minecraft.network.EnumConnectionState;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.handshake.client.C00Handshake;
-import net.minecraft.network.login.server.SPacketDisconnect;
 import net.minecraft.server.network.NetHandlerHandshakeTCP;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.spongepowered.asm.mixin.Final;
@@ -62,10 +60,10 @@ public abstract class MixinHandshakeListener {
                     ((IBungeeNetworkManager) this.networkManager).spoofedProfile(gson.fromJson(split[3], Property[].class));
                 }
             } else {
-                TextComponentString chatcomponenttext =
+                /*TextComponentString chatcomponenttext =
                         new TextComponentString("If you wish to use IP forwarding, please enable it in your BungeeCord config as well!");
                 this.networkManager.sendPacket(new SPacketDisconnect(chatcomponenttext));
-                this.networkManager.closeChannel(chatcomponenttext);
+                this.networkManager.closeChannel(chatcomponenttext);*/
             }
         }
     }

@@ -1,7 +1,7 @@
 /*
  * Adapted from the Wizardry License
  *
- * Copyright (c) 2017 DaPorkchop_ and contributors
+ * Copyright (c) 2018 DaPorkchop_ and contributors
  *
  * Permission is hereby granted to any persons and/or organizations using this software to copy, modify, merge, publish, and distribute it.
  * Said persons and/or organizations are not allowed to use the software or any derivatives of the work for commercial use or any other means to generate income, nor are they allowed to claim this software as their own.
@@ -18,6 +18,8 @@ package net.daporkchop.speedboost.mixin.optimizeexplosions;
 
 import net.daporkchop.speedboost.add.optimizeexplosions.IExplosionsWorld;
 import net.daporkchop.speedboost.paperclasses.ExplosionCacheKey;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
@@ -28,6 +30,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+import java.util.List;
 import java.util.Map;
 
 @Mixin(Explosion.class)
@@ -40,7 +43,7 @@ public abstract class MixinExplosion {
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/world/World;getBlockDensity(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/AxisAlignedBB;)F"))
     public float optimizeExplosions(World world, Vec3d vec3d, AxisAlignedBB bb) {
-        return getBlockDensity(vec3d, bb);
+        return this.getBlockDensity(vec3d, bb);
     }
 
     // Paper start - Optimize explosions
@@ -54,5 +57,12 @@ public abstract class MixinExplosion {
         }
 
         return blockDensity;
+    }
+
+    @Redirect(method = "Lnet/minecraft/world/Explosion;doExplosionA()V",
+            at = @At(value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;getEntitiesWithinAABBExcludingEntity(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/AxisAlignedBB;)Ljava/util/List;"))
+    public List preventAddingDeadEntities(World world, Entity entity, AxisAlignedBB bb) {
+        return world.getEntitiesInAABBexcluding(entity, bb, (e) -> EntitySelectors.NOT_SPECTATING.apply(e) && !e.isDead);
     }
 }
