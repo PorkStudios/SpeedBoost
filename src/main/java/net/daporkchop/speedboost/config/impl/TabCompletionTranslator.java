@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class TabCompletionTranslator implements IConfigTranslator {
     public static final TabCompletionTranslator INSTANCE = new TabCompletionTranslator();
-    public boolean enable = true;
+    public boolean enable = false;
 
     private TabCompletionTranslator() {
 
@@ -36,7 +36,7 @@ public class TabCompletionTranslator implements IConfigTranslator {
     }
 
     public String name() {
-        return "enableTabCompletion";
+        return "disableTabCompletion";
     }
 
     public boolean getState() {
