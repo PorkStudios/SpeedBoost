@@ -16,10 +16,14 @@
 
 package net.daporkchop.speedboost.add.optimizeexplosions;
 
+import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import net.daporkchop.speedboost.paperclasses.ExplosionCacheKey;
 
 import java.util.Map;
 
+/**
+ * @author DaPorkchop_
+ */
 public interface IExplosionsWorld {
-    Map<ExplosionCacheKey, Float> explosionDensityCache();
+    Object2FloatMap<ExplosionCacheKey> explosionDensityCache();
 }

@@ -16,6 +16,7 @@
 
 package net.daporkchop.speedboost.mixin.optimizeexplosions;
 
+import it.unimi.dsi.fastutil.objects.Object2FloatMap;
 import net.daporkchop.speedboost.add.optimizeexplosions.IExplosionsWorld;
 import net.daporkchop.speedboost.paperclasses.ExplosionCacheKey;
 import net.minecraft.entity.Entity;
@@ -39,26 +40,30 @@ public abstract class MixinExplosion {
     @Final
     private World world;
 
-    @Redirect(method = "Lnet/minecraft/world/Explosion;doExplosionA()V",
-            at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getBlockDensity(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/AxisAlignedBB;)F"))
-    public float optimizeExplosions(World world, Vec3d vec3d, AxisAlignedBB bb) {
-        return this.getBlockDensity(vec3d, bb);
-    }
+    @Redirect(
+            method = "Lnet/minecraft/world/Explosion;doExplosionA()V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;getBlockDensity(Lnet/minecraft/util/math/Vec3d;Lnet/minecraft/util/math/AxisAlignedBB;)F"
+            ))
+    public float optimizeExplosions(World world, Vec3d vec3d, AxisAlignedBB aabb) {
+        ExplosionCacheKey key = new ExplosionCacheKey((Explosion) (Object) this, aabb);
+        Object2FloatMap<ExplosionCacheKey> densityCache = ((IExplosionsWorld) this.world).explosionDensityCache();
 
-    // Paper start - Optimize explosions
-    private float getBlockDensity(Vec3d vec3d, AxisAlignedBB aabb) {
-        ExplosionCacheKey key = new ExplosionCacheKey(Explosion.class.cast(this), aabb);
-        Map<ExplosionCacheKey, Float> densityCache = ((IExplosionsWorld) this.world).explosionDensityCache();
-        Float blockDensity = densityCache.computeIfAbsent(key, k -> this.world.getBlockDensity(vec3d, aabb));
-
+        float blockDensity = densityCache.getFloat(key);
+        if (Float.isNaN(blockDensity))  {
+            densityCache.put(key, blockDensity = this.world.getBlockDensity(vec3d, aabb));
+        }
         return blockDensity;
     }
 
-    @Redirect(method = "Lnet/minecraft/world/Explosion;doExplosionA()V",
-            at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getEntitiesWithinAABBExcludingEntity(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/AxisAlignedBB;)Ljava/util/List;"))
+    @Redirect(
+            method = "Lnet/minecraft/world/Explosion;doExplosionA()V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/World;getEntitiesWithinAABBExcludingEntity(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/AxisAlignedBB;)Ljava/util/List;"
+            ))
     public List preventAddingDeadEntities(World world, Entity entity, AxisAlignedBB bb) {
-        return world.getEntitiesInAABBexcluding(entity, bb, (e) -> EntitySelectors.NOT_SPECTATING.apply(e) && !e.isDead);
+        return world.getEntitiesInAABBexcluding(entity, bb, e -> EntitySelectors.NOT_SPECTATING.apply(e) && !e.isDead);
     }
 }

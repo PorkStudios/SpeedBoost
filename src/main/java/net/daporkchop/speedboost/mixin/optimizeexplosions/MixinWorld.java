@@ -16,20 +16,37 @@
 
 package net.daporkchop.speedboost.mixin.optimizeexplosions;
 
+import it.unimi.dsi.fastutil.objects.Object2FloatAVLTreeMap;
+import it.unimi.dsi.fastutil.objects.Object2FloatMap;
+import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2FloatRBTreeMap;
+import lombok.Getter;
+import lombok.experimental.Accessors;
 import net.daporkchop.speedboost.add.optimizeexplosions.IExplosionsWorld;
 import net.daporkchop.speedboost.paperclasses.ExplosionCacheKey;
+import net.minecraft.profiler.Profiler;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.storage.ISaveHandler;
+import net.minecraft.world.storage.WorldInfo;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(World.class)
+@Accessors(fluent = true)
 public abstract class MixinWorld implements IExplosionsWorld {
-    public final Map<ExplosionCacheKey, Float> explosionDensityCache = new HashMap<>();
+    @Getter
+    public final Object2FloatMap<ExplosionCacheKey> explosionDensityCache = new Object2FloatOpenHashMap<>();
 
-    @Override
-    public Map<ExplosionCacheKey, Float> explosionDensityCache() {
-        return this.explosionDensityCache;
+    @Inject(
+            method = "Lnet/minecraft/world/World;<init>(Lnet/minecraft/world/storage/ISaveHandler;Lnet/minecraft/world/storage/WorldInfo;Lnet/minecraft/world/WorldProvider;Lnet/minecraft/profiler/Profiler;Z)V",
+            at = @At("RETURN"))
+    private void setCacheDefaultReturnValue(ISaveHandler saveHandlerIn, WorldInfo info, WorldProvider providerIn, Profiler profilerIn, boolean client, CallbackInfo ci)    {
+        this.explosionDensityCache.defaultReturnValue(Float.NaN);
     }
 }
