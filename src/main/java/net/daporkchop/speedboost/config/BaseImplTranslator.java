@@ -25,14 +25,14 @@ public class BaseImplTranslator implements IConfigTranslator {
 
     }
 
-    public boolean state = false;
+    public boolean state;
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
+        json.addProperty("state", this.state);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
+        this.state = this.getBoolean(json, "state", this.state);
     }
 
     public String name() {
@@ -40,7 +40,7 @@ public class BaseImplTranslator implements IConfigTranslator {
     }
 
     public boolean getState()   {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

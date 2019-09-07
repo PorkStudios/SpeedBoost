@@ -21,8 +21,8 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class TNTLimitTranslator implements IConfigTranslator {
     public static final TNTLimitTranslator INSTANCE = new TNTLimitTranslator();
-    public boolean state = false;
-    public int currentPrimedTnt = 0;
+    public boolean state;
+    public int currentPrimedTnt;
     public int maxTntTicksPerTick = 100;
 
     private TNTLimitTranslator() {
@@ -30,13 +30,13 @@ public class TNTLimitTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("maxTntTicksPerTick", maxTntTicksPerTick);
+        json.addProperty("state", this.state);
+        json.addProperty("maxTntTicksPerTick", this.maxTntTicksPerTick);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        maxTntTicksPerTick = getInt(json, "maxTntTicksPerTick", maxTntTicksPerTick);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.maxTntTicksPerTick = this.getInt(json, "maxTntTicksPerTick", this.maxTntTicksPerTick);
     }
 
     public String name() {
@@ -44,7 +44,7 @@ public class TNTLimitTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

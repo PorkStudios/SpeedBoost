@@ -34,7 +34,7 @@ public abstract class MixinC00Handshake {
     @Shadow public String ip;
     @Shadow public int port;
     @Shadow private EnumConnectionState requestedState;
-    @Shadow(remap = false) private boolean hasFMLMarker = false;
+    @Shadow(remap = false) private boolean hasFMLMarker;
 
     @Inject(method = "readPacketData(Lnet/minecraft/network/PacketBuffer;)V", at = @At("HEAD"), cancellable = true, locals = LocalCapture.CAPTURE_FAILSOFT)
     public void readPacketData(PacketBuffer buf, CallbackInfo callbackInfo) throws IOException {

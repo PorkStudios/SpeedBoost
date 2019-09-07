@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class EntityTrackingTranslator implements IConfigTranslator {
     public static final EntityTrackingTranslator INSTANCE = new EntityTrackingTranslator();
-    public boolean state = false;
+    public boolean state;
     public int playerTrackingRange = 48;
     public int animalTrackingRange = 48;
     public int monsterTrackingRange = 48;
@@ -33,21 +33,21 @@ public class EntityTrackingTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("playerTrackingRange", playerTrackingRange);
-        json.addProperty("animalTrackingRange", animalTrackingRange);
-        json.addProperty("monsterTrackingRange", monsterTrackingRange);
-        json.addProperty("miscTrackingRange", miscTrackingRange);
-        json.addProperty("otherTrackingRange", otherTrackingRange);
+        json.addProperty("state", this.state);
+        json.addProperty("playerTrackingRange", this.playerTrackingRange);
+        json.addProperty("animalTrackingRange", this.animalTrackingRange);
+        json.addProperty("monsterTrackingRange", this.monsterTrackingRange);
+        json.addProperty("miscTrackingRange", this.miscTrackingRange);
+        json.addProperty("otherTrackingRange", this.otherTrackingRange);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        playerTrackingRange = getInt(json, "playerTrackingRange", playerTrackingRange);
-        animalTrackingRange = getInt(json, "animalTrackingRange", animalTrackingRange);
-        monsterTrackingRange = getInt(json, "monsterTrackingRange", monsterTrackingRange);
-        miscTrackingRange = getInt(json, "miscTrackingRange", miscTrackingRange);
-        otherTrackingRange = getInt(json, "otherTrackingRange", otherTrackingRange);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.playerTrackingRange = this.getInt(json, "playerTrackingRange", this.playerTrackingRange);
+        this.animalTrackingRange = this.getInt(json, "animalTrackingRange", this.animalTrackingRange);
+        this.monsterTrackingRange = this.getInt(json, "monsterTrackingRange", this.monsterTrackingRange);
+        this.miscTrackingRange = this.getInt(json, "miscTrackingRange", this.miscTrackingRange);
+        this.otherTrackingRange = this.getInt(json, "otherTrackingRange", this.otherTrackingRange);
     }
 
     public String name() {
@@ -55,7 +55,7 @@ public class EntityTrackingTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

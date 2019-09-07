@@ -22,9 +22,15 @@ import net.minecraft.world.World;
 
 public class ExplosionCacheKey {
     private final World world;
-    private final double posX, posY, posZ;
-    private final double minX, minY, minZ;
-    private final double maxX, maxY, maxZ;
+    private final double posX;
+    private final double posY;
+    private final double posZ;
+    private final double minX;
+    private final double minY;
+    private final double minZ;
+    private final double maxX;
+    private final double maxY;
+    private final double maxZ;
 
     public ExplosionCacheKey(Explosion explosion, AxisAlignedBB aabb) {
         this.world = explosion.world;
@@ -42,44 +48,44 @@ public class ExplosionCacheKey {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || this.getClass() != o.getClass()) return false;
 
         ExplosionCacheKey cacheKey = (ExplosionCacheKey) o;
 
-        if (Double.compare(cacheKey.posX, posX) != 0) return false;
-        if (Double.compare(cacheKey.posY, posY) != 0) return false;
-        if (Double.compare(cacheKey.posZ, posZ) != 0) return false;
-        if (Double.compare(cacheKey.minX, minX) != 0) return false;
-        if (Double.compare(cacheKey.minY, minY) != 0) return false;
-        if (Double.compare(cacheKey.minZ, minZ) != 0) return false;
-        if (Double.compare(cacheKey.maxX, maxX) != 0) return false;
-        if (Double.compare(cacheKey.maxY, maxY) != 0) return false;
-        if (Double.compare(cacheKey.maxZ, maxZ) != 0) return false;
-        return world.equals(cacheKey.world);
+        if (Double.compare(cacheKey.posX, this.posX) != 0) return false;
+        if (Double.compare(cacheKey.posY, this.posY) != 0) return false;
+        if (Double.compare(cacheKey.posZ, this.posZ) != 0) return false;
+        if (Double.compare(cacheKey.minX, this.minX) != 0) return false;
+        if (Double.compare(cacheKey.minY, this.minY) != 0) return false;
+        if (Double.compare(cacheKey.minZ, this.minZ) != 0) return false;
+        if (Double.compare(cacheKey.maxX, this.maxX) != 0) return false;
+        if (Double.compare(cacheKey.maxY, this.maxY) != 0) return false;
+        if (Double.compare(cacheKey.maxZ, this.maxZ) != 0) return false;
+        return this.world.equals(cacheKey.world);
     }
 
     @Override
     public int hashCode() {
         int result;
         long temp;
-        result = world.hashCode();
-        temp = Double.doubleToLongBits(posX);
+        result = this.world.hashCode();
+        temp = Double.doubleToLongBits(this.posX);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(posY);
+        temp = Double.doubleToLongBits(this.posY);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(posZ);
+        temp = Double.doubleToLongBits(this.posZ);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(minX);
+        temp = Double.doubleToLongBits(this.minX);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(minY);
+        temp = Double.doubleToLongBits(this.minY);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(minZ);
+        temp = Double.doubleToLongBits(this.minZ);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(maxX);
+        temp = Double.doubleToLongBits(this.maxX);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(maxY);
+        temp = Double.doubleToLongBits(this.maxY);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(maxZ);
+        temp = Double.doubleToLongBits(this.maxZ);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }

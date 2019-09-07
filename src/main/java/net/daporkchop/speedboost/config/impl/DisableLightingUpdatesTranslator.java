@@ -21,18 +21,18 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class DisableLightingUpdatesTranslator implements IConfigTranslator {
     public static final DisableLightingUpdatesTranslator INSTANCE = new DisableLightingUpdatesTranslator();
-    public boolean disbleRandomLightUpdates = false;
+    public boolean disbleRandomLightUpdates;
 
     private DisableLightingUpdatesTranslator() {
 
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("disbleRandomLightUpdates", disbleRandomLightUpdates);
+        json.addProperty("disbleRandomLightUpdates", this.disbleRandomLightUpdates);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        disbleRandomLightUpdates = getBoolean(json, "disbleRandomLightUpdates", disbleRandomLightUpdates);
+        this.disbleRandomLightUpdates = this.getBoolean(json, "disbleRandomLightUpdates", this.disbleRandomLightUpdates);
     }
 
     public String name() {
@@ -40,7 +40,7 @@ public class DisableLightingUpdatesTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return disbleRandomLightUpdates;
+        return this.disbleRandomLightUpdates;
     }
 
     public String getPackageName() {

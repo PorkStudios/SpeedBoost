@@ -35,17 +35,17 @@ public abstract class MixinNetworkManager implements IBungeeNetworkManager {
 
     @Override
     public UUID spoofedUUID()  {
-        return spoofedUUID;
+        return this.spoofedUUID;
     }
 
     @Override
     public Property[] spoofedProfile()  {
-        return spoofedProfile;
+        return this.spoofedProfile;
     }
 
     @Override
     public SocketAddress getRawAddress()    {
-        return channel.remoteAddress();
+        return this.channel.remoteAddress();
     }
 
     @Override

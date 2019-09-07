@@ -40,7 +40,7 @@ public abstract class MixinNetHandlerPlayServer {
             at = @At("HEAD"))
     public void logCommands(String command, CallbackInfo callbackInfo) {
         if (MessagesTranslator.INSTANCE.logCommands) {
-            LOGGER.info(player.getName() + " issued server command: " + command);
+            LOGGER.info(this.player.getName() + " issued server command: " + command);
         }
     }
 }

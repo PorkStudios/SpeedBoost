@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class MessagesTranslator implements IConfigTranslator {
     public static final MessagesTranslator INSTANCE = new MessagesTranslator();
-    public boolean state = false;
+    public boolean state;
     public boolean logCommands = true;
     public String whitelistMessage = "You are not whitelisted on this server!";
     public String unknownCommandMessage = "Unknown command. Type \"/help\" for help.";
@@ -34,23 +34,23 @@ public class MessagesTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("logCommands", logCommands);
-        json.addProperty("whitelistMessage", whitelistMessage);
-        json.addProperty("unknownCommandMessage", unknownCommandMessage);
-        json.addProperty("serverFullMessage", serverFullMessage);
-        json.addProperty("outdatedClientMessage", outdatedClientMessage);
-        json.addProperty("outdatedServerMessage", outdatedServerMessage);
+        json.addProperty("state", this.state);
+        json.addProperty("logCommands", this.logCommands);
+        json.addProperty("whitelistMessage", this.whitelistMessage);
+        json.addProperty("unknownCommandMessage", this.unknownCommandMessage);
+        json.addProperty("serverFullMessage", this.serverFullMessage);
+        json.addProperty("outdatedClientMessage", this.outdatedClientMessage);
+        json.addProperty("outdatedServerMessage", this.outdatedServerMessage);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        logCommands = getBoolean(json, "logCommands", logCommands);
-        whitelistMessage = getString(json, "whitelistMessage", whitelistMessage).replace('&', '\u00A7');
-        whitelistMessage = getString(json, "unknownCommandMessage", unknownCommandMessage).replace('&', '\u00A7');
-        whitelistMessage = getString(json, "serverFullMessage", serverFullMessage).replace('&', '\u00A7');
-        whitelistMessage = getString(json, "outdatedClientMessage", outdatedClientMessage).replace('&', '\u00A7');
-        whitelistMessage = getString(json, "outdatedServerMessage", outdatedServerMessage).replace('&', '\u00A7');
+        this.state = this.getBoolean(json, "state", this.state);
+        this.logCommands = this.getBoolean(json, "logCommands", this.logCommands);
+        this.whitelistMessage = this.getString(json, "whitelistMessage", this.whitelistMessage).replace('&', '\u00A7');
+        this.whitelistMessage = this.getString(json, "unknownCommandMessage", this.unknownCommandMessage).replace('&', '\u00A7');
+        this.whitelistMessage = this.getString(json, "serverFullMessage", this.serverFullMessage).replace('&', '\u00A7');
+        this.whitelistMessage = this.getString(json, "outdatedClientMessage", this.outdatedClientMessage).replace('&', '\u00A7');
+        this.whitelistMessage = this.getString(json, "outdatedServerMessage", this.outdatedServerMessage).replace('&', '\u00A7');
     }
 
     public String name() {
@@ -58,7 +58,7 @@ public class MessagesTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

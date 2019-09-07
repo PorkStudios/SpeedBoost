@@ -26,17 +26,17 @@ public class ItemDespawn implements IConfigTranslator {
 
     }
 
-    public boolean state = false;
+    public boolean state;
     public int lifespan = 6000;
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("lifespan", lifespan);
+        json.addProperty("state", this.state);
+        json.addProperty("lifespan", this.lifespan);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        lifespan = getInt(json, "lifespan", lifespan);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.lifespan = this.getInt(json, "lifespan", this.lifespan);
     }
 
     public String name() {
@@ -44,7 +44,7 @@ public class ItemDespawn implements IConfigTranslator {
     }
 
     public boolean getState()   {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

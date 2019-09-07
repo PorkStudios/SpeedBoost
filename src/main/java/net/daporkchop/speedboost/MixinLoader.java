@@ -26,7 +26,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class MixinLoader implements IFMLLoadingPlugin {
-    public static boolean isObfuscatedEnvironment = false;
+    public static boolean isObfuscatedEnvironment;
 
     public MixinLoader() {
         FMLLog.log.info("\n\n\nSpeedBoost Mixin init\n\n");

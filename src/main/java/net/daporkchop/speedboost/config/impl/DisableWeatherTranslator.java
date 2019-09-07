@@ -21,24 +21,24 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class DisableWeatherTranslator implements IConfigTranslator {
     public static final DisableWeatherTranslator INSTANCE = new DisableWeatherTranslator();
-    public boolean state = false;
-    public boolean disableThunder = false;
-    public boolean disableIceSnow = false;
+    public boolean state;
+    public boolean disableThunder;
+    public boolean disableIceSnow;
 
     private DisableWeatherTranslator() {
 
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("disableThunder", disableThunder);
-        json.addProperty("disableIceSnow", disableIceSnow);
+        json.addProperty("state", this.state);
+        json.addProperty("disableThunder", this.disableThunder);
+        json.addProperty("disableIceSnow", this.disableIceSnow);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        disableThunder = getBoolean(json, "disableThunder", disableThunder);
-        disableIceSnow = getBoolean(json, "disableIceSnow", disableIceSnow);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.disableThunder = this.getBoolean(json, "disableThunder", this.disableThunder);
+        this.disableIceSnow = this.getBoolean(json, "disableIceSnow", this.disableIceSnow);
     }
 
     public String name() {
@@ -46,7 +46,7 @@ public class DisableWeatherTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

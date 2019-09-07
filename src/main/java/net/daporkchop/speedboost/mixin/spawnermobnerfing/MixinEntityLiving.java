@@ -30,7 +30,7 @@ public abstract class MixinEntityLiving extends MixinEntityLivingBase {
                     ordinal = 1),
             cancellable = true)
     public void nerfSpawnerMobs(CallbackInfo callbackInfo) {
-        if (fromMobSpawner) {
+        if (this.fromMobSpawner) {
             callbackInfo.cancel();
         }
     }

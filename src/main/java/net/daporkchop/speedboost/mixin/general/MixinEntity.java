@@ -33,7 +33,7 @@ public abstract class MixinEntity {
     @Inject(method = "Lnet/minecraft/entity/Entity;writeToNBT(Lnet/minecraft/nbt/NBTTagCompound;)Lnet/minecraft/nbt/NBTTagCompound;",
             at = @At("HEAD"))
     public void saveTicksLived(NBTTagCompound compound, CallbackInfoReturnable<NBTTagCompound> callbackInfo) {
-        compound.setInteger("Spigot.ticksExisted", ticksExisted);
+        compound.setInteger("Spigot.ticksExisted", this.ticksExisted);
     }
 
     @Inject(method = "Lnet/minecraft/entity/Entity;readFromNBT(Lnet/minecraft/nbt/NBTTagCompound;)V",

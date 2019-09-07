@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class ArrowDespawnRateTranslator implements IConfigTranslator {
     public static final ArrowDespawnRateTranslator INSTANCE = new ArrowDespawnRateTranslator();
-    public boolean state = false;
+    public boolean state;
     public int despawnRate = 1200;
 
     private ArrowDespawnRateTranslator() {
@@ -29,13 +29,13 @@ public class ArrowDespawnRateTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("despawnRate", despawnRate);
+        json.addProperty("state", this.state);
+        json.addProperty("despawnRate", this.despawnRate);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        despawnRate = getInt(json, "despawnRate", despawnRate);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.despawnRate = this.getInt(json, "despawnRate", this.despawnRate);
     }
 
     public String name() {
@@ -43,7 +43,7 @@ public class ArrowDespawnRateTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

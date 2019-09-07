@@ -39,12 +39,12 @@ public abstract class MixinWorld {
     @Inject(method = "Lnet/minecraft/world/World;updateEntities()V",
             at = @At(value = "INVOKE_ASSIGN", target = "Ljava/util/Iterator;next()Ljava/lang/Object;"))
     public void preventNullTileEntities(CallbackInfo callbackInfo)  {
-        Iterator secondIterator = tickableTileEntities.iterator();
+        Iterator secondIterator = this.tickableTileEntities.iterator();
 
         while (secondIterator.hasNext())    {
             if (secondIterator.next() == null)  {
                 secondIterator.remove();
-                getMinecraftServer().logSevere("Spigot (SpeedBoost) has detected a null entity and has removed it, preventing a crash");
+                this.getMinecraftServer().logSevere("Spigot (SpeedBoost) has detected a null entity and has removed it, preventing a crash");
             }
         }
     }

@@ -25,7 +25,7 @@ public class EntityActivationTranslator implements IConfigTranslator {
     public int animalActivationRange = 32;
     public int monsterActivationRange = 32;
     public int miscActivationRange = 16;
-    public boolean state = false;
+    public boolean state;
 
     private EntityActivationTranslator() {
 
@@ -36,17 +36,17 @@ public class EntityActivationTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("animalActivationRange", animalActivationRange);
-        json.addProperty("monsterActivationRange", monsterActivationRange);
-        json.addProperty("miscActivationRange", miscActivationRange);
+        json.addProperty("state", this.state);
+        json.addProperty("animalActivationRange", this.animalActivationRange);
+        json.addProperty("monsterActivationRange", this.monsterActivationRange);
+        json.addProperty("miscActivationRange", this.miscActivationRange);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        animalActivationRange = getInt(json, "animalActivationRange", animalActivationRange);
-        monsterActivationRange = getInt(json, "monsterActivationRange", monsterActivationRange);
-        miscActivationRange = getInt(json, "miscActivationRange", miscActivationRange);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.animalActivationRange = this.getInt(json, "animalActivationRange", this.animalActivationRange);
+        this.monsterActivationRange = this.getInt(json, "monsterActivationRange", this.monsterActivationRange);
+        this.miscActivationRange = this.getInt(json, "miscActivationRange", this.miscActivationRange);
     }
 
     public String name() {
@@ -54,6 +54,6 @@ public class EntityActivationTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 }

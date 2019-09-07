@@ -50,11 +50,7 @@ public abstract class MixinExplosion {
     private float getBlockDensity(Vec3d vec3d, AxisAlignedBB aabb) {
         ExplosionCacheKey key = new ExplosionCacheKey(Explosion.class.cast(this), aabb);
         Map<ExplosionCacheKey, Float> densityCache = ((IExplosionsWorld) this.world).explosionDensityCache();
-        Float blockDensity = densityCache.get(key);
-        if (blockDensity == null) {
-            blockDensity = this.world.getBlockDensity(vec3d, aabb);
-            densityCache.put(key, blockDensity);
-        }
+        Float blockDensity = densityCache.computeIfAbsent(key, k -> this.world.getBlockDensity(vec3d, aabb));
 
         return blockDensity;
     }

@@ -32,11 +32,11 @@ public abstract class MixinEntityItem {
 
     @Inject(method = "Lnet/minecraft/entity/item/EntityItem;<init>(Lnet/minecraft/world/World;DDD)V", at = @At("RETURN"))
     public void changeConstructor1(World world, double x, double y, double z, CallbackInfo callbackInfo)   {
-        lifespan = ItemDespawn.INSTANCE.lifespan;
+        this.lifespan = ItemDespawn.INSTANCE.lifespan;
     }
 
     @Inject(method = "Lnet/minecraft/entity/item/EntityItem;<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;)V", at = @At("RETURN"))
     public void changeConstructor2(World world, double x, double y, double z, ItemStack stack, CallbackInfo callbackInfo)   {
-        lifespan = ItemDespawn.INSTANCE.lifespan;
+        this.lifespan = ItemDespawn.INSTANCE.lifespan;
     }
 }

@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class HopperCustomizationsTranslator implements IConfigTranslator {
     public static final HopperCustomizationsTranslator INSTANCE = new HopperCustomizationsTranslator();
-    public boolean state = false;
+    public boolean state;
     public int hopperTransfer;
     public int hopperCheck;
     public int hopperAmount;
@@ -31,17 +31,17 @@ public class HopperCustomizationsTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("hopperTransfer", hopperTransfer);
-        json.addProperty("hopperCheck", hopperCheck);
+        json.addProperty("state", this.state);
+        json.addProperty("hopperTransfer", this.hopperTransfer);
+        json.addProperty("hopperCheck", this.hopperCheck);
         //json.addProperty("hopperAmount", hopperAmount);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        hopperTransfer = getInt(json, "hopperTransfer", hopperTransfer);
-        hopperCheck = getInt(json, "hopperCheck", hopperCheck);
-        hopperAmount = getInt(json, "hopperAmount", hopperAmount);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.hopperTransfer = this.getInt(json, "hopperTransfer", this.hopperTransfer);
+        this.hopperCheck = this.getInt(json, "hopperCheck", this.hopperCheck);
+        this.hopperAmount = this.getInt(json, "hopperAmount", this.hopperAmount);
     }
 
     public String name() {
@@ -49,7 +49,7 @@ public class HopperCustomizationsTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

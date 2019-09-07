@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class MovementThresholdTranslator implements IConfigTranslator {
     public static final MovementThresholdTranslator INSTANCE = new MovementThresholdTranslator();
-    public boolean state = false;
+    public boolean state;
     public double movedWronglyThreshold = 0.0625d;
 
     private MovementThresholdTranslator() {
@@ -29,13 +29,13 @@ public class MovementThresholdTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("movedWronglyThreshold", movedWronglyThreshold);
+        json.addProperty("state", this.state);
+        json.addProperty("movedWronglyThreshold", this.movedWronglyThreshold);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        movedWronglyThreshold = getDouble(json, "movedWronglyThreshold", movedWronglyThreshold);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.movedWronglyThreshold = this.getDouble(json, "movedWronglyThreshold", this.movedWronglyThreshold);
     }
 
     public String name() {
@@ -43,7 +43,7 @@ public class MovementThresholdTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

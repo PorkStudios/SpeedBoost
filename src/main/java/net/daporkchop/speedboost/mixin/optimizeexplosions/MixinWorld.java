@@ -30,6 +30,6 @@ public abstract class MixinWorld implements IExplosionsWorld {
 
     @Override
     public Map<ExplosionCacheKey, Float> explosionDensityCache() {
-        return explosionDensityCache;
+        return this.explosionDensityCache;
     }
 }

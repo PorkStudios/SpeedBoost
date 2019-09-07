@@ -224,8 +224,8 @@ public interface IConfigTranslator {
      * @return LOAD if it should, NO_LOAD if not, UNKNOWN if this translator doesn't know
      */
     default EnumLoadType shouldLoad(String name) {
-        if (name.startsWith("net.daporkchop.speedboost.mixin." + getPackageName())) {
-            return getState() ? EnumLoadType.LOAD : EnumLoadType.NO_LOAD;
+        if (name.startsWith("net.daporkchop.speedboost.mixin." + this.getPackageName())) {
+            return this.getState() ? EnumLoadType.LOAD : EnumLoadType.NO_LOAD;
         }
 
         return EnumLoadType.UNKNOWN;

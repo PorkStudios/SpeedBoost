@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class FluidSpeedTranslator implements IConfigTranslator {
     public static final FluidSpeedTranslator INSTANCE = new FluidSpeedTranslator();
-    public boolean state = false;
+    public boolean state;
     public int waterSpeed = 5;
     public int lavaSpeed = 30;
     public int lavaSpeedNether = 10;
@@ -31,11 +31,11 @@ public class FluidSpeedTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
+        json.addProperty("state", this.state);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
+        this.state = this.getBoolean(json, "state", this.state);
     }
 
     public String name() {
@@ -43,7 +43,7 @@ public class FluidSpeedTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

@@ -46,29 +46,29 @@ public abstract class MixinEntity implements IActivationEntity {
             at = @At(value = "RETURN"))
     public void setDefaultActivationState(World worldIn, CallbackInfo callbackInfo) {
         if (worldIn == null) {
-            defaultActivationState = false;
+            this.defaultActivationState = false;
         } else {
-            defaultActivationState = ActivationRange.initializeEntityActivationState(Entity.class.cast(this));
+            this.defaultActivationState = ActivationRange.initializeEntityActivationState(Entity.class.cast(this));
         }
     }
 
     @Override
     public boolean defaultActivationState() {
-        return defaultActivationState;
+        return this.defaultActivationState;
     }
 
     @Override
     public long getActivatedTick() {
-        return activatedTick;
+        return this.activatedTick;
     }
 
     @Override
     public void setActivatedTick(long tick) {
-        activatedTick = tick;
+        this.activatedTick = tick;
     }
 
     @Override
     public byte getActivationType() {
-        return activationType;
+        return this.activationType;
     }
 }

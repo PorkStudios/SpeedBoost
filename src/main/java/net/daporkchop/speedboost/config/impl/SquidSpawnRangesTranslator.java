@@ -22,7 +22,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class SquidSpawnRangesTranslator implements IConfigTranslator {
     public static final SquidSpawnRangesTranslator INSTANCE = new SquidSpawnRangesTranslator();
-    public boolean state = false;
+    public boolean state;
     public double squidMinSpawnHeight = 49.0d;
     public double squidMaxSpawnHeight = 64.0d;
 
@@ -31,17 +31,17 @@ public class SquidSpawnRangesTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("squidMinSpawnHeight", squidMinSpawnHeight);
-        json.addProperty("squidMaxSpawnHeight", squidMaxSpawnHeight);
+        json.addProperty("state", this.state);
+        json.addProperty("squidMinSpawnHeight", this.squidMinSpawnHeight);
+        json.addProperty("squidMaxSpawnHeight", this.squidMaxSpawnHeight);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        squidMinSpawnHeight = getDouble(json, "squidMinSpawnHeight", squidMinSpawnHeight);
-        squidMaxSpawnHeight = getDouble(json, "squidMaxSpawnHeight", squidMaxSpawnHeight);
-        if (state) {
-            Config.LOGGER.info("Squids will spawn between Y: " + squidMinSpawnHeight + " and Y: " + squidMaxSpawnHeight);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.squidMinSpawnHeight = this.getDouble(json, "squidMinSpawnHeight", this.squidMinSpawnHeight);
+        this.squidMaxSpawnHeight = this.getDouble(json, "squidMaxSpawnHeight", this.squidMaxSpawnHeight);
+        if (this.state) {
+            Config.LOGGER.info("Squids will spawn between Y: " + this.squidMinSpawnHeight + " and Y: " + this.squidMaxSpawnHeight);
         }
     }
 
@@ -50,7 +50,7 @@ public class SquidSpawnRangesTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

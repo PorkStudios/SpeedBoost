@@ -34,12 +34,12 @@ public abstract class MixinContainer {
             at = @At(value = "INVOKE",
                     target = "Lnet/minecraft/item/ItemStack;areItemStacksEqual(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z"))
     public boolean speedUpIsEqual(ItemStack a, ItemStack b) {
-        return !(PorkInject.fastMatches(a, b) || (tickCount % FastItemMatchesTranslator.INSTANCE.itemDirtyTicks == 0 && !ItemStack.areItemStacksEqual(a, b)));
+        return !(PorkInject.fastMatches(a, b) || (this.tickCount % FastItemMatchesTranslator.INSTANCE.itemDirtyTicks == 0 && !ItemStack.areItemStacksEqual(a, b)));
     }
 
     @Inject(method = "Lnet/minecraft/inventory/Container;detectAndSendChanges()V",
             at = @At("TAIL"))
     public void incrementTickCounter(CallbackInfo callbackInfo) {
-        tickCount++;
+        this.tickCount++;
     }
 }

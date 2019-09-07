@@ -76,7 +76,7 @@ public abstract class MixinHandshakeListener {
             Property[] pr = ((IBungeeNetworkManager) networkManager).spoofedProfile();
             if (pr != null) {
                 for (Property p : pr) {
-                    if (p.getName().equalsIgnoreCase("forgeClient") && p.getValue().equalsIgnoreCase("true")) {
+                    if ("forgeClient".equalsIgnoreCase(p.getName()) && "true".equalsIgnoreCase(p.getValue())) {
                         // Manually tell the system that we're a FML client.
                         networkManager.channel().attr(NetworkRegistry.FML_MARKER).set(true);
                         return true;

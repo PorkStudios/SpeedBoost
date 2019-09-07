@@ -80,6 +80,7 @@ repositories {
 ext {
     lombokVersion = "1.18.8"
     mixinVersion = "0.7.11-SNAPSHOT"
+    porklibVersion = "0.3.0-SNAPSHOT"
 }
 
 dependencies {
@@ -87,6 +88,8 @@ dependencies {
         exclude module: "launchwrapper"
     }
     annotationProcessor("org.spongepowered:mixin:$mixinVersion")
+
+    shade "net.daporkchop.lib:unsafe:$porklibVersion"
 
     compileOnly "org.projectlombok:lombok:$lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$lombokVersion"

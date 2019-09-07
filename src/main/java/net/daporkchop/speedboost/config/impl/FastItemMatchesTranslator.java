@@ -21,7 +21,7 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class FastItemMatchesTranslator implements IConfigTranslator {
     public static final FastItemMatchesTranslator INSTANCE = new FastItemMatchesTranslator();
-    public boolean state = false;
+    public boolean state;
     public int itemDirtyTicks = 20;
 
     private FastItemMatchesTranslator() {
@@ -29,13 +29,13 @@ public class FastItemMatchesTranslator implements IConfigTranslator {
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("state", state);
-        json.addProperty("itemDirtyTicks", itemDirtyTicks);
+        json.addProperty("state", this.state);
+        json.addProperty("itemDirtyTicks", this.itemDirtyTicks);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        state = getBoolean(json, "state", state);
-        itemDirtyTicks = getInt(json, "itemDirtyTicks", itemDirtyTicks);
+        this.state = this.getBoolean(json, "state", this.state);
+        this.itemDirtyTicks = this.getInt(json, "itemDirtyTicks", this.itemDirtyTicks);
     }
 
     public String name() {
@@ -43,7 +43,7 @@ public class FastItemMatchesTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return state;
+        return this.state;
     }
 
     public String getPackageName() {

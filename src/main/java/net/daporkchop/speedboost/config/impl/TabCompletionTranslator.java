@@ -21,18 +21,18 @@ import net.daporkchop.speedboost.config.IConfigTranslator;
 
 public class TabCompletionTranslator implements IConfigTranslator {
     public static final TabCompletionTranslator INSTANCE = new TabCompletionTranslator();
-    public boolean enable = false;
+    public boolean enable;
 
     private TabCompletionTranslator() {
 
     }
 
     public void encode(JsonObject json) {
-        json.addProperty("enable", enable);
+        json.addProperty("enable", this.enable);
     }
 
     public void decode(String fieldName, JsonObject json) {
-        enable = getBoolean(json, "enable", enable);
+        this.enable = this.getBoolean(json, "enable", this.enable);
     }
 
     public String name() {
@@ -40,7 +40,7 @@ public class TabCompletionTranslator implements IConfigTranslator {
     }
 
     public boolean getState() {
-        return enable;
+        return this.enable;
     }
 
     public String getPackageName() {
