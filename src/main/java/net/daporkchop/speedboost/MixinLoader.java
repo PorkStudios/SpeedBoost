@@ -29,9 +29,9 @@ public class MixinLoader implements IFMLLoadingPlugin {
     public static boolean isObfuscatedEnvironment = false;
 
     public MixinLoader() {
-        FMLLog.log.info("\n\n\nVanillaBoost Mixin init\n\n");
+        FMLLog.log.info("\n\n\nSpeedBoost Mixin init\n\n");
         MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.vanillaboost.json");
+        Mixins.addConfiguration("mixins.speedboost.json");
 
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
 

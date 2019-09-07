@@ -97,13 +97,13 @@ public class Config implements IMixinConfigPlugin {
 
 
     @Nonnull
-    public static Logger LOGGER = LogManager.getLogger("vanillaboost_config");
+    public static Logger LOGGER = LogManager.getLogger("speedboost_config");
 
     @Override
     public void onLoad(String mixinPackage) {
         File folder = new File(/*".", */"config");
         folder.mkdirs();
-        File configFile = new File(folder, "vanillaboost_config.json");
+        File configFile = new File(folder, "speedboost_config.json");
         LOGGER.info("Loading configuration file " + configFile.getAbsolutePath());
         try {
             String config = "{}";

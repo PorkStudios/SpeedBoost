@@ -2,7 +2,7 @@
   "required": true,
   "compatibilityLevel": "JAVA_8",
   "package": "net.daporkchop.speedboost.mixin",
-  "refmap": "mixins.vanillaboost.refmap.json",
+  "refmap": "mixins.speedboost.refmap.json",
   "plugin": "net.daporkchop.speedboost.config.Config",
   "mixins": [
     "antinulltiles.MixinWorld",
