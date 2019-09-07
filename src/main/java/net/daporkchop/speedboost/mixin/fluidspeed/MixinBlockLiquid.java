@@ -23,7 +23,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BlockLiquid.class)
@@ -32,18 +34,30 @@ public abstract class MixinBlockLiquid extends Block {
         super(null);
     }
 
-    @Inject(method = "Lnet/minecraft/block/BlockLiquid;tickRate(Lnet/minecraft/world/World;)I",
-            at = @At("HEAD"),
-            cancellable = true)
-    public void changeFluidTickRate(World world, CallbackInfoReturnable<Integer> callbackInfo) {
-        if (blockMaterial == Material.LAVA) {
-            if (world.provider.isNether()) {
-                callbackInfo.setReturnValue(FluidSpeedTranslator.INSTANCE.lavaSpeedNether);
-            } else {
-                callbackInfo.setReturnValue(FluidSpeedTranslator.INSTANCE.lavaSpeed);
-            }
-        } else if (blockMaterial == Material.WATER) {
-            callbackInfo.setReturnValue(FluidSpeedTranslator.INSTANCE.waterSpeed);
-        }
+    @ModifyConstant(
+            method = "Lnet/minecraft/block/BlockLiquid;tickRate(Lnet/minecraft/world/World;)I",
+            constant = @Constant(
+                    intValue = 5
+            ))
+    private int changeWaterSpeed(int oldSpeed)  {
+        return FluidSpeedTranslator.INSTANCE.waterSpeed;
+    }
+
+    @ModifyConstant(
+            method = "Lnet/minecraft/block/BlockLiquid;tickRate(Lnet/minecraft/world/World;)I",
+            constant = @Constant(
+                    intValue = 30
+            ))
+    private int changeLavaSpeed(int oldSpeed)  {
+        return FluidSpeedTranslator.INSTANCE.lavaSpeed;
+    }
+
+    @ModifyConstant(
+            method = "Lnet/minecraft/block/BlockLiquid;tickRate(Lnet/minecraft/world/World;)I",
+            constant = @Constant(
+                    intValue = 10
+            ))
+    private int changeLavaSpeedNether(int oldSpeed)  {
+        return FluidSpeedTranslator.INSTANCE.lavaSpeedNether;
     }
 }

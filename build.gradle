@@ -86,6 +86,10 @@ ext {
 dependencies {
     shade("org.spongepowered:mixin:$mixinVersion") {
         exclude module: "launchwrapper"
+
+        exclude module: "guava"
+        exclude module: "gson"
+        exclude module: "commons-io"
     }
     annotationProcessor("org.spongepowered:mixin:$mixinVersion")
 

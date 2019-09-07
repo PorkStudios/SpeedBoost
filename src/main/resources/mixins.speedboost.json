@@ -29,6 +29,7 @@
     "entityactivationrange.MixinWorld",
     "entitytrackingrange.MixinEntityTracker",
     "fastitemmatches.MixinContainer",
+    "fixentitytrackerconcurrency.MixinEntityTracker",
     "fluidspeed.MixinBlockLiquid",
     "general.MixinEntity",
     "general.MixinMinecraftServer",

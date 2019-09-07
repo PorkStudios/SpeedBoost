@@ -27,15 +27,20 @@ public class FluidSpeedTranslator implements IConfigTranslator {
     public int lavaSpeedNether = 10;
 
     private FluidSpeedTranslator() {
-
     }
 
     public void encode(JsonObject json) {
         json.addProperty("state", this.state);
+        json.addProperty("waterSpeed", this.waterSpeed);
+        json.addProperty("lavaSpeed", this.lavaSpeed);
+        json.addProperty("lavaSpeedNether", this.lavaSpeedNether);
     }
 
     public void decode(String fieldName, JsonObject json) {
         this.state = this.getBoolean(json, "state", this.state);
+        this.waterSpeed = this.getInt(json, "waterSpeed", this.waterSpeed);
+        this.lavaSpeed = this.getInt(json, "lavaSpeed", this.lavaSpeed);
+        this.lavaSpeedNether = this.getInt(json, "lavaSpeedNether", this.lavaSpeedNether);
     }
 
     public String name() {

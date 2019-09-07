@@ -130,7 +130,7 @@ public class ActivationRange {
                 for (int y = minY; y <= maxY; ++y) {
                     for (int z = minZ; z <= maxZ; ++z) {
                         if (world.isBlockLoaded(new BlockPos(x * 16, y * 16, z * 16))) {
-                            activateChunkEntities(world.getChunkFromChunkCoords(x, z));
+                            activateChunkEntities(world.getChunk(x, z));
                         }
                     }
                 }

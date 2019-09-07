@@ -42,7 +42,6 @@ import java.util.Set;
  * Based on the config system in pepsimod
  */
 public class Config implements IMixinConfigPlugin {
-
     private static Hashtable<String, IConfigTranslator> translators = new Hashtable<>();
 
     static {
@@ -55,6 +54,7 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(EntityActivationTranslator.INSTANCE);
         registerConfigTranslator(EntityTrackingTranslator.INSTANCE);
         registerConfigTranslator(FastItemMatchesTranslator.INSTANCE);
+        registerConfigTranslator(FixEntityTrackerConcurrencyTranslator.INSTANCE);
         registerConfigTranslator(FluidSpeedTranslator.INSTANCE);
         registerConfigTranslator(HopperCustomizationsTranslator.INSTANCE);
         registerConfigTranslator(ItemDespawn.INSTANCE);

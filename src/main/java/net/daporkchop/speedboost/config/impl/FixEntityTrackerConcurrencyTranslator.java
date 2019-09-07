@@ -14,30 +14,37 @@
  *
  */
 
-package net.daporkchop.speedboost.mixin.itemdespawn;
+package net.daporkchop.speedboost.config.impl;
 
-import net.daporkchop.speedboost.config.impl.ItemDespawn;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.google.gson.JsonObject;
+import net.daporkchop.speedboost.config.IConfigTranslator;
 
-@Mixin(EntityItem.class)
-public abstract class MixinEntityItem {
-    @Shadow
-    public int lifespan;
+public class FixEntityTrackerConcurrencyTranslator implements IConfigTranslator {
+    public static final FixEntityTrackerConcurrencyTranslator INSTANCE = new FixEntityTrackerConcurrencyTranslator();
 
-    @Inject(method = "Lnet/minecraft/entity/item/EntityItem;<init>(Lnet/minecraft/world/World;DDD)V", at = @At("RETURN"))
-    public void changeConstructor1(World world, double x, double y, double z, CallbackInfo callbackInfo)   {
-        this.lifespan = ItemDespawn.INSTANCE.lifespan;
+    private FixEntityTrackerConcurrencyTranslator() {
+
     }
 
-    @Inject(method = "Lnet/minecraft/entity/item/EntityItem;<init>(Lnet/minecraft/world/World;DDDLnet/minecraft/item/ItemStack;)V", at = @At("RETURN"))
-    public void changeConstructor2(World world, double x, double y, double z, ItemStack stack, CallbackInfo callbackInfo)   {
-        this.lifespan = ItemDespawn.INSTANCE.lifespan;
+    public boolean state;
+
+    public void encode(JsonObject json) {
+        json.addProperty("state", this.state);
+    }
+
+    public void decode(String fieldName, JsonObject json) {
+        this.state = this.getBoolean(json, "state", this.state);
+    }
+
+    public String name() {
+        return "fixEntityTrackerConcurrency";
+    }
+
+    public boolean getState()   {
+        return this.state;
+    }
+
+    public String getPackageName() {
+        return "fixentitytrackerconcurrency";
     }
 }
