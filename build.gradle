@@ -34,23 +34,57 @@ buildscript {
 
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "org.spongepowered.mixin"
-apply plugin: "java"
 
-version = "0.0.1"
+ext {
+    //general things
+    javaVersion = "1.8"
+    speedboostVersion = "0.0.1." + ('git rev-list --count HEAD'.execute().text.trim())
+
+    //minecraft things
+    mcpmappingsVersion = "stable_39"
+    minecraftforgeVersion = "14.23.5.2847"
+    minecraftVersion = "1.12.2"
+
+    //dependency things
+    guavaVersion = "21.0"
+    lombokVersion = "1.16.20"
+    mixinVersion = "0.8.2"
+    porklibVersion = "0.5.5-SNAPSHOT"
+}
+
+version = "$speedboostVersion"
 group = "net.daporkchop"
 archivesBaseName = "speedboost"
 
 compileJava {
-    sourceCompatibility = targetCompatibility = "1.8"
+    sourceCompatibility = targetCompatibility = "$javaVersion"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2838"
+    version = "$minecraftVersion-$minecraftforgeVersion"
     runDir = "run"
 
-    mappings = "stable_39"
+    mappings = "$mcpmappingsVersion"
     makeObfSourceJar = false
     coreMod = "net.daporkchop.speedboost.MixinLoader"
+
+    def args = [
+            "-Dmixin.checks.interfaces=true",
+            "-Dmixin.debug.export=true",
+            "-Dmixin.debug.verbose=true",
+            "-Dmixin.hotSwap=true",
+            "-Dfp2.debug=true",
+            "-Xmx2G",
+            "-XX:+UseG1GC",
+            "-ea",
+            "-da:io.netty..."
+    ]
+    clientJvmArgs += args
+    serverJvmArgs += args
 }
 
 configurations {
@@ -59,13 +93,12 @@ configurations {
 
     all {
         resolutionStrategy {
-            force("com.google.guava:guava:21.0")
+            force("com.google.guava:guava:$guavaVersion")
         }
     }
 }
 
 repositories {
-    mavenLocal()
     maven {
         name = "DaPorkchop_"
         url = "https://maven.daporkchop.net/"
@@ -77,21 +110,12 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    lombokVersion = "1.18.8"
-    mixinVersion = "0.8.1-SNAPSHOT"
-}
-
 dependencies {
     shade("org.spongepowered:mixin:$mixinVersion") {
         //transitive = false
     }
 
-    annotationProcessor "com.google.code.gson:gson:2.8.0"
-    annotationProcessor "com.google.guava:guava:21.0"
-    annotationProcessor "org.apache.logging.log4j:log4j-core:2.8.1"
-    annotationProcessor "org.ow2.asm:asm-debug-all:5.2"
-    annotationProcessor "org.spongepowered:mixin:$mixinVersion"
+    annotationProcessor "org.spongepowered:mixin:$mixinVersion:processor"
 
     //shade "net.daporkchop.lib:unsafe:$porklibVersion"
 
@@ -126,12 +150,17 @@ reobf.jar {
 }
 
 jar {
+    archiveName "SpeedBoost-v$speedboostVersion-$minecraftVersion" + ".jar"
+
     from {
         configurations.shade.collect {
             it.isDirectory() ? it : zipTree(it)
         }.unique(true)
     } {
-        exclude "META-INF/*"
+        exclude "META-INF/**"
+        exclude sourceSets.main.output.asFileTree.collect {
+            return it.getPath().split("java/main/").last()
+        }
     }
 
     manifest {
@@ -147,3 +176,14 @@ jar {
     }
 }
 
+task preIntellijRuns {
+    doFirst {
+        StreamSupport.stream(configurations.annotationProcessor.spliterator(), false).filter({
+            it.name.contains("mixin")
+        }).findAny().ifPresent({
+            minecraft.clientJvmArgs += "-javaagent:" + it.absolutePath
+            minecraft.serverJvmArgs += "-javaagent:" + it.absolutePath
+        })
+    }
+}
+genIntellijRuns.dependsOn(preIntellijRuns)
