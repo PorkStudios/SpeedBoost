@@ -1,7 +1,7 @@
 /*
  * Adapted from the Wizardry License
  *
- * Copyright (c) 2018-2020 DaPorkchop_ and contributors
+ * Copyright (c) 2018-2023 DaPorkchop_ and contributors
  *
  * Permission is hereby granted to any persons and/or organizations using this software to copy, modify, merge, publish, and distribute it.
  * Said persons and/or organizations are not allowed to use the software or any derivatives of the work for commercial use or any other means to generate income, nor are they allowed to claim this software as their own.
@@ -24,7 +24,6 @@ import net.daporkchop.speedboost.config.impl.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.spongepowered.asm.lib.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
@@ -42,7 +41,7 @@ import java.util.Set;
  * Based on the config system in pepsimod
  */
 public class Config implements IMixinConfigPlugin {
-    private static Hashtable<String, IConfigTranslator> translators = new Hashtable<>();
+    private static final Hashtable<String, IConfigTranslator> translators = new Hashtable<>();
 
     static {
         registerConfigTranslator(ArrowDespawnRateTranslator.INSTANCE);
@@ -54,6 +53,7 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(DisableZombieVillagerAgressionTranslator.INSTANCE);
         registerConfigTranslator(EntityActivationTranslator.INSTANCE);
         registerConfigTranslator(EntityTrackingTranslator.INSTANCE);
+        registerConfigTranslator(EntityUpdateLimitTranslator.INSTANCE);
         registerConfigTranslator(FastItemMatchesTranslator.INSTANCE);
         registerConfigTranslator(FixEntityTrackerConcurrencyTranslator.INSTANCE);
         registerConfigTranslator(FluidSpeedTranslator.INSTANCE);
