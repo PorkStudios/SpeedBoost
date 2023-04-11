@@ -31,6 +31,7 @@
     "entitytrackingrange.MixinEntityTracker",
     "entityupdatelimit.MixinWorld",
     "fastitemmatches.MixinContainer",
+    "fastthreadlocalserverthread.MixinMinecraftServer",
     "fixentitytrackerconcurrency.MixinEntityTracker",
     "fluidspeed.MixinBlockLiquid",
     "general.MixinEntity",

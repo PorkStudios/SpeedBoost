@@ -32,7 +32,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -41,7 +41,7 @@ import java.util.Set;
  * Based on the config system in pepsimod
  */
 public class Config implements IMixinConfigPlugin {
-    private static final Hashtable<String, IConfigTranslator> translators = new Hashtable<>();
+    private static final Map<String, IConfigTranslator> translators = new LinkedHashMap<>();
 
     static {
         registerConfigTranslator(ArrowDespawnRateTranslator.INSTANCE);
@@ -55,6 +55,7 @@ public class Config implements IMixinConfigPlugin {
         registerConfigTranslator(EntityTrackingTranslator.INSTANCE);
         registerConfigTranslator(EntityUpdateLimitTranslator.INSTANCE);
         registerConfigTranslator(FastItemMatchesTranslator.INSTANCE);
+        registerConfigTranslator(FastThreadLocalServerThreadTranslator.INSTANCE);
         registerConfigTranslator(FixEntityTrackerConcurrencyTranslator.INSTANCE);
         registerConfigTranslator(FluidSpeedTranslator.INSTANCE);
         registerConfigTranslator(HopperCustomizationsTranslator.INSTANCE);
@@ -98,7 +99,7 @@ public class Config implements IMixinConfigPlugin {
 
 
     @Nonnull
-    public static Logger LOGGER = LogManager.getLogger("speedboost_config");
+    public static final Logger LOGGER = LogManager.getLogger("speedboost_config");
 
     @Override
     public void onLoad(String mixinPackage) {
